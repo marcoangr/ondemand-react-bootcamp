@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/marcoangr.github.io/static/css/main.2dd3708b.chunk.css",
+    "main.js": "/marcoangr.github.io/static/js/main.f1cdbd84.chunk.js",
+    "main.js.map": "/marcoangr.github.io/static/js/main.f1cdbd84.chunk.js.map",
+    "runtime-main.js": "/marcoangr.github.io/static/js/runtime-main.51ba7653.js",
+    "runtime-main.js.map": "/marcoangr.github.io/static/js/runtime-main.51ba7653.js.map",
+    "static/js/2.910ecde8.chunk.js": "/marcoangr.github.io/static/js/2.910ecde8.chunk.js",
+    "static/js/2.910ecde8.chunk.js.map": "/marcoangr.github.io/static/js/2.910ecde8.chunk.js.map",
+    "static/js/3.9c5afbec.chunk.js": "/marcoangr.github.io/static/js/3.9c5afbec.chunk.js",
+    "static/js/3.9c5afbec.chunk.js.map": "/marcoangr.github.io/static/js/3.9c5afbec.chunk.js.map",
+    "index.html": "/marcoangr.github.io/index.html",
+    "static/css/main.2dd3708b.chunk.css.map": "/marcoangr.github.io/static/css/main.2dd3708b.chunk.css.map",
+    "static/js/2.910ecde8.chunk.js.LICENSE.txt": "/marcoangr.github.io/static/js/2.910ecde8.chunk.js.LICENSE.txt",
+    "static/media/left-arrow.5d9991d1.svg": "/marcoangr.github.io/static/media/left-arrow.5d9991d1.svg",
+    "static/media/logo-store.e88397b2.svg": "/marcoangr.github.io/static/media/logo-store.e88397b2.svg",
+    "static/media/right-arrow.f90f76bd.svg": "/marcoangr.github.io/static/media/right-arrow.f90f76bd.svg",
+    "static/media/shopping-cart.6bdd96b0.svg": "/marcoangr.github.io/static/media/shopping-cart.6bdd96b0.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.51ba7653.js",
+    "static/js/2.910ecde8.chunk.js",
+    "static/css/main.2dd3708b.chunk.css",
+    "static/js/main.f1cdbd84.chunk.js"
+  ]
+}
