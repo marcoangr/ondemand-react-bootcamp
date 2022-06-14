@@ -1,0 +1,64 @@
+.header img:first-of-type {
+  width: 80px;
+  margin: 5px 10px;
+  float: left;
+}
+
+.header img:last-child {
+  width: 40px;
+  border-radius: 100%;
+  float: right;
+  margin: 5px;
+}
+.search {
+  float: left;
+}
+
+.header {
+  background-color: #02111b;
+  max-width: 1024px;
+  width: 100%;
+  overflow: hidden;
+  margin: auto;
+  padding: 10px;
+}
+
+/* Search styles */
+
+form.search {
+  max-width: 300px;
+  width: 50%;
+  margin: 5px 10px;
+}
+
+/* Style the search field */
+form.search input[type="text"] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.search .btnSearch {
+  width: 20%;
+  padding: 10px;
+  background: rgb(184, 52, 52);
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.search .btnSearch:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.search::after {
+  content: "";
+  clear: both;
+}

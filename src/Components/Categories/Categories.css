@@ -1,0 +1,91 @@
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+  max-width: 950px;
+  width: 90%;
+  margin: 5px auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  padding-bottom: 15px;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card"  seffect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  width: 95%;
+}
+
+#title {
+  background-color: rgb(237, 225, 102);
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  transform: rotate(2deg) translateY(-10px);
+  margin-bottom: 10px;
+  border: 1px dashed black;
+}
+
+.see-more {
+  display: none;
+}
+
+.btn-see-more {
+  display: block;
+  width: 90%;
+  height: 40px;
+  font-size: 16px;
+  background-color: black;
+  color: #f1f1f1;
+  border-radius: 10px;
+  margin: 0px auto;
+}
+
+.btn-see-more:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 400px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .card {
+    width: 100%;
+  }
+
+  .row {
+    border: 2px dashed #f61067;
+  }
+
+  .see-more {
+    display: none;
+  }
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) and (min-width: 401px) {
+  .column {
+    width: 50%;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .see-more {
+    display: none;
+  }
+}
