@@ -1,6 +1,5 @@
 /* Remove extra left and right margins, due to padding in columns */
 .row {
-  max-width: 950px;
   width: 90%;
   margin: 5px auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
@@ -10,7 +9,7 @@
 /* Float four columns side by side */
 .column {
   float: left;
-  width: 33%;
+  width: 25%;
 }
 
 /* Clear floats after the columns */

@@ -6,7 +6,13 @@ import "./../../styles/header-styles.css";
 const Header = () => {
   return (
     <header className="header">
-      <img src={logo} alt="Grovee's Store" />
+      <img
+        src={logo}
+        alt="Grovee's Store"
+        onClick={() => {
+          window.location.href = "/ondemand-react-bootcamp";
+        }}
+      />
       <form className="search">
         <input type="text" placeholder="Search.." name="search" />
         <button type="submit" className="btnSearch">
