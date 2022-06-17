@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/ondemand-react-bootcamp/static/css/main.2dd3708b.chunk.css",
-    "main.js": "/ondemand-react-bootcamp/static/js/main.f1cdbd84.chunk.js",
-    "main.js.map": "/ondemand-react-bootcamp/static/js/main.f1cdbd84.chunk.js.map",
-    "runtime-main.js": "/ondemand-react-bootcamp/static/js/runtime-main.b37f5ec4.js",
-    "runtime-main.js.map": "/ondemand-react-bootcamp/static/js/runtime-main.b37f5ec4.js.map",
-    "static/js/2.910ecde8.chunk.js": "/ondemand-react-bootcamp/static/js/2.910ecde8.chunk.js",
-    "static/js/2.910ecde8.chunk.js.map": "/ondemand-react-bootcamp/static/js/2.910ecde8.chunk.js.map",
-    "static/js/3.9c5afbec.chunk.js": "/ondemand-react-bootcamp/static/js/3.9c5afbec.chunk.js",
-    "static/js/3.9c5afbec.chunk.js.map": "/ondemand-react-bootcamp/static/js/3.9c5afbec.chunk.js.map",
+    "main.css": "/ondemand-react-bootcamp/static/css/main.40517cf3.chunk.css",
+    "main.js": "/ondemand-react-bootcamp/static/js/main.1645d6b1.chunk.js",
+    "main.js.map": "/ondemand-react-bootcamp/static/js/main.1645d6b1.chunk.js.map",
+    "runtime-main.js": "/ondemand-react-bootcamp/static/js/runtime-main.1e2f109f.js",
+    "runtime-main.js.map": "/ondemand-react-bootcamp/static/js/runtime-main.1e2f109f.js.map",
+    "static/js/2.026ab0af.chunk.js": "/ondemand-react-bootcamp/static/js/2.026ab0af.chunk.js",
+    "static/js/2.026ab0af.chunk.js.map": "/ondemand-react-bootcamp/static/js/2.026ab0af.chunk.js.map",
+    "static/js/3.be746e7b.chunk.js": "/ondemand-react-bootcamp/static/js/3.be746e7b.chunk.js",
+    "static/js/3.be746e7b.chunk.js.map": "/ondemand-react-bootcamp/static/js/3.be746e7b.chunk.js.map",
     "index.html": "/ondemand-react-bootcamp/index.html",
-    "static/css/main.2dd3708b.chunk.css.map": "/ondemand-react-bootcamp/static/css/main.2dd3708b.chunk.css.map",
-    "static/js/2.910ecde8.chunk.js.LICENSE.txt": "/ondemand-react-bootcamp/static/js/2.910ecde8.chunk.js.LICENSE.txt",
+    "static/css/main.40517cf3.chunk.css.map": "/ondemand-react-bootcamp/static/css/main.40517cf3.chunk.css.map",
+    "static/js/2.026ab0af.chunk.js.LICENSE.txt": "/ondemand-react-bootcamp/static/js/2.026ab0af.chunk.js.LICENSE.txt",
     "static/media/left-arrow.5d9991d1.svg": "/ondemand-react-bootcamp/static/media/left-arrow.5d9991d1.svg",
     "static/media/logo-store.e88397b2.svg": "/ondemand-react-bootcamp/static/media/logo-store.e88397b2.svg",
     "static/media/right-arrow.f90f76bd.svg": "/ondemand-react-bootcamp/static/media/right-arrow.f90f76bd.svg",
     "static/media/shopping-cart.6bdd96b0.svg": "/ondemand-react-bootcamp/static/media/shopping-cart.6bdd96b0.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b37f5ec4.js",
-    "static/js/2.910ecde8.chunk.js",
-    "static/css/main.2dd3708b.chunk.css",
-    "static/js/main.f1cdbd84.chunk.js"
+    "static/js/runtime-main.1e2f109f.js",
+    "static/js/2.026ab0af.chunk.js",
+    "static/css/main.40517cf3.chunk.css",
+    "static/js/main.1645d6b1.chunk.js"
   ]
 }
