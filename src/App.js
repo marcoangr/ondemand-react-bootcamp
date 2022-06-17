@@ -4,13 +4,17 @@ import "./App.css";
 import ProductListPage from "./Components/ProductList/ProductListPage";
 
 const showHomePage = () => {
-  if (window.location.pathname === "/ondemand-react-bootcamp") {
+  if (window.location.pathname.match(/\/ondemand-react-bootcamp[/]?/)) {
     return <HomePage />;
   }
 };
 
 const showProductsPage = () => {
-  if (window.location.pathname === "/ondemand-react-bootcamp/all-products") {
+  if (
+    window.location.pathname.match(
+      /\/ondemand-react-bootcamp\/all-products[/]?/
+    )
+  ) {
     return <ProductListPage />;
   }
 };
