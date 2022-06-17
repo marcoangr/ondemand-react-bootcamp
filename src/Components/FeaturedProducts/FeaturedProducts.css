@@ -1,5 +1,5 @@
 .container {
-  width: 100%;
+  width: 98%;
   margin: auto;
   padding: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
@@ -25,9 +25,6 @@
   .products {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
-}
-.see-more {
-  display: none;
 }
 
 .card-p {

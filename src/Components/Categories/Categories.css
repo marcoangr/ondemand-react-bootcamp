@@ -1,15 +1,20 @@
 /* Remove extra left and right margins, due to padding in columns */
-.row {
+.row-container {
   width: 90%;
-  margin: 5px auto;
+  margin: 10px auto 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 }
 
-/* Float four columns side by side */
+.row {
+  display: flex;
+  flex-flow: wrap;
+  flex: 1 100%;
+}
+
 .column {
-  float: left;
-  width: 25%;
+  margin: auto;
+  width: 33%;
 }
 
 /* Clear floats after the columns */
@@ -37,10 +42,6 @@
   transform: rotate(2deg) translateY(-10px);
   margin-bottom: 10px;
   border: 1px dashed black;
-}
-
-.see-more {
-  display: none;
 }
 
 .btn-see-more {

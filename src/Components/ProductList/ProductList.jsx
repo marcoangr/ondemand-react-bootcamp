@@ -4,10 +4,16 @@ import categoriesData from "./../../data/mocks/es-mx/product-categories.json";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 import products from "./../../data/mocks/es-mx/products.json";
 import PaginationControls from "../Controls/Pagination";
+import Loader from "../Controls/Loader.jsx";
 
 const ProductList = () => {
   const [filter, setFilter] = useState([]);
   const [productsF, setProducts] = useState(products.results);
+  const [isLoading, setLoading] = useState(true);
+  let timer = setTimeout(() => {
+    clearTimeout(timer);
+    return setLoading(false);
+  }, 2000);
 
   useEffect(() => {
     if (filter.length === 0) {
@@ -30,6 +36,16 @@ const ProductList = () => {
       </div>
       <div className="products-container">
         <aside className="aside-filter">
+          <div
+            style={{
+              backgroundColor: "rgb(237, 225, 102)",
+              color: "red",
+              padding: "10px",
+              fontWeight: "700",
+            }}
+          >
+            Categorias
+          </div>
           <ul className="aside-categories">
             {categoriesData.results.map((item, index) => (
               <FilterItem
@@ -41,18 +57,8 @@ const ProductList = () => {
             ))}
           </ul>
         </aside>
-        {productsF.length > 0 ? (
-          <section className="main-content">
-            <FeaturedProducts data={productsF} parent={"list"} />
-            <PaginationControls />
-          </section>
-        ) : (
-          <section className="main-content">
-            <div className="no-data-found">
-              Ooops! Intenta con otra categoria
-            </div>
-          </section>
-        )}
+        {isLoading && <Loader />}
+        {!isLoading && <Products products={productsF} />}
       </div>
     </>
   );
@@ -75,6 +81,19 @@ const FilterItem = ({ item, setFilter, filter }) => {
     <li key={"li-" + item.id} className={isActive} onClick={updateFilter}>
       {item.data.name}
     </li>
+  );
+};
+
+const Products = ({ products }) => {
+  return products.length > 0 ? (
+    <section className="main-content">
+      <FeaturedProducts data={products} parent={"list"} />
+      <PaginationControls />
+    </section>
+  ) : (
+    <section className="main-content">
+      <div className="no-data-found">Ooops! Intenta con otra categoria</div>
+    </section>
   );
 };
 

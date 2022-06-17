@@ -1,4 +1,3 @@
-import React from "react";
 import ProductList from "./ProductList.jsx";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
