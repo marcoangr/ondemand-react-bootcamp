@@ -46,13 +46,14 @@
 
 .btn-see-more {
   display: block;
-  width: 90%;
-  height: 40px;
   font-size: 16px;
-  background-color: black;
+  font-weight: 700;
+  padding: 10px;
+  background-color: brown;
   color: #f1f1f1;
   border-radius: 10px;
   margin: 0px auto;
+  border: 1px solid black;
 }
 
 .btn-see-more:hover {

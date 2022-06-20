@@ -5,20 +5,22 @@ export default function CategoryList(props) {
   const [seeMore, setSeeMore] = useState(false);
   let lastItem = props.itemsPerRow;
   return (
-    <div className="row">
-      <CategoryItem
-        start={props.start}
-        lastItem={lastItem}
-        list={categoriesData.results}
-      />
-
-      {seeMore && (
+    <>
+      <div className="row">
         <CategoryItem
-          start={lastItem}
-          lastItem={categoriesData.results.length}
+          start={props.start}
+          lastItem={lastItem}
           list={categoriesData.results}
         />
-      )}
+
+        {seeMore && (
+          <CategoryItem
+            start={lastItem}
+            lastItem={categoriesData.results.length}
+            list={categoriesData.results}
+          />
+        )}
+      </div>
 
       <button
         id={"btn-see-more"}
@@ -27,7 +29,7 @@ export default function CategoryList(props) {
       >
         {seeMore ? "Ver menos" : "Ver mas"}
       </button>
-    </div>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import "./FeaturedProducts.css";
+import Link from "../Controls/Link";
 
 export default function FeaturedProducts({ data, parent }) {
   return (
@@ -21,15 +22,13 @@ export default function FeaturedProducts({ data, parent }) {
         ))}
       </ul>
       {parent === "home" && (
-        <button
-          id={"btn-see-more"}
-          className="btn-see-more"
-          onClick={() => {
-            window.location.href = "/ondemand-react-bootcamp/all-products";
-          }}
+        <Link
+          href="/ondemand-react-bootcamp/all-products"
+          id={"btn-see-all"}
+          className="btn-see-all"
         >
           Ver todos los productos
-        </button>
+        </Link>
       )}
     </div>
   );
