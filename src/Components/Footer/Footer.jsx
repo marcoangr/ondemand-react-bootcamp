@@ -1,13 +1,12 @@
 import React from "react";
 
 const footerStyle = {
-  maxWidth: "1024px",
   width: "100%",
   backgroundColor: "black",
   margin: "auto",
   fontSize: "17px",
   color: "white",
-  padding: "20px",
+  padding: "50px",
   fontWeight: "700",
 };
 

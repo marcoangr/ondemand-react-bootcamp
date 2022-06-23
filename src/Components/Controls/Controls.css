@@ -1,0 +1,60 @@
+/* Pagination Controls */
+.center {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+  margin: 5px auto;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #b83434;
+  color: white;
+  border: 1px solid black;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+/* Loader widget */
+#loader {
+  z-index: 10;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  border: 5px solid rgb(237, 225, 102);
+  border-radius: 50%;
+  border-top: 5px solid #f61067;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

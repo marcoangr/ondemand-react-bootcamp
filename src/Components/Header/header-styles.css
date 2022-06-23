@@ -4,6 +4,11 @@
   float: left;
 }
 
+.header img:hover {
+  cursor: pointer;
+  transform: scale(1.2, 1.2);
+}
+
 .header img:last-child {
   width: 40px;
   border-radius: 100%;
@@ -16,7 +21,6 @@
 
 .header {
   background-color: #02111b;
-  max-width: 1024px;
   width: 100%;
   overflow: hidden;
   margin: auto;
@@ -45,7 +49,7 @@ form.search input[type="text"] {
 form.search .btnSearch {
   width: 20%;
   padding: 10px;
-  background: rgb(184, 52, 52);
+  background: #b83434;
   color: white;
   font-size: 17px;
   border: 1px solid grey;

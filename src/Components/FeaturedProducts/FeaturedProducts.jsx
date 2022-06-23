@@ -1,34 +1,14 @@
 import React from "react";
 import "./FeaturedProducts.css";
-import featuredProdData from "../../data/mocks/es-mx/featured-products.json";
+import Link from "../Controls/Link";
 
-function seeMore() {
-  var hidenElements = document.querySelectorAll(".see-more-p");
-  console.log(hidenElements);
-  for (var i = 0; i < hidenElements.length; i++) {
-    console.log(i);
-    hidenElements[i].classList.remove("see-more-p");
-  }
-
-  document.getElementById("btn-see-more").style.display = "none";
-}
-
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ data, parent }) {
   return (
     <div className="container">
-      <h1>Best sellers</h1>
-      <ul className="products">
-        {featuredProdData.results.map((record, index) => (
-          <li
-            className={
-              (window.innerWidth > 600 && index >= 3
-                ? "see-more-p"
-                : window.innerWidth < 600 && index >= 4
-                ? "see-more-p"
-                : "") + " card-p"
-            }
-            key={record.id}
-          >
+      {parent === "home" && <h1>Best sellers</h1>}
+      <ul className={parent === "home" ? "products" : "products list"}>
+        {data?.map((record, index) => (
+          <li className={"card-p"} key={record.id}>
             <img
               src={record.data.mainimage.url + "&w=500&h=700"}
               alt="Denim Jeans"
@@ -41,9 +21,15 @@ export default function FeaturedProducts() {
           </li>
         ))}
       </ul>
-      <button id={"btn-see-more"} className="btn-see-more" onClick={seeMore}>
-        Ver mas
-      </button>
+      {parent === "home" && (
+        <Link
+          href="/ondemand-react-bootcamp/all-products"
+          id={"btn-see-all"}
+          className="btn-see-all"
+        >
+          Ver todos los productos
+        </Link>
+      )}
     </div>
   );
 }

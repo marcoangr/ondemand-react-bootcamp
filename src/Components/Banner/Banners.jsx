@@ -1,24 +1,16 @@
 import React, { useState } from "react";
-import "./../../styles/slider-styles.css";
+import "./slider-styles.css";
 import BtnSlider from "./BtnSlider.jsx";
 
 const Banners = (props) => {
   const [slideIndex, setSlideIndex] = useState(1);
 
   const prevSlide = () => {
-    if (slideIndex > 0) {
-      setSlideIndex(slideIndex);
-    } else if (slideIndex === 0) {
-      setSlideIndex(props.size);
-    }
+    setSlideIndex(slideIndex > 1 ? slideIndex - 1 : props.size);
   };
 
   const nextSlide = () => {
-    if (slideIndex !== props.size) {
-      setSlideIndex(slideIndex + 1);
-    } else if (slideIndex === props.size) {
-      setSlideIndex(1);
-    }
+    setSlideIndex(slideIndex !== props.size ? slideIndex + 1 : 1);
   };
 
   return (

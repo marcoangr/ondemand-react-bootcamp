@@ -1,15 +1,19 @@
 /* Remove extra left and right margins, due to padding in columns */
-.row {
-  max-width: 950px;
+.row-container {
   width: 90%;
-  margin: 5px auto;
+  margin: 10px auto 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 }
 
-/* Float four columns side by side */
+.row {
+  display: flex;
+  flex-flow: wrap;
+  flex: 1 100%;
+}
+
 .column {
-  float: left;
+  margin: auto;
   width: 33%;
 }
 
@@ -40,19 +44,16 @@
   border: 1px dashed black;
 }
 
-.see-more {
-  display: none;
-}
-
 .btn-see-more {
   display: block;
-  width: 90%;
-  height: 40px;
   font-size: 16px;
-  background-color: black;
+  font-weight: 700;
+  padding: 10px;
+  background-color: brown;
   color: #f1f1f1;
   border-radius: 10px;
   margin: 0px auto;
+  border: 1px solid black;
 }
 
 .btn-see-more:hover {
