@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Link = ({ className, href, children }) => {
+export default function Link({ className, href, children }) {
   const onClick = (event) => {
     console.log("click");
 
@@ -17,6 +18,10 @@ const Link = ({ className, href, children }) => {
       {children}
     </a>
   );
-};
+}
 
-export default Link;
+Link.propTypes = {
+  className: PropTypes.string,
+  href: PropTypes.string,
+  children: PropTypes.elementType,
+};

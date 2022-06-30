@@ -6,7 +6,7 @@ import FeaturedProducts from "./../FeaturedProducts/FeaturedProducts.jsx";
 import { useFeaturedProducts } from "./../../utils/hooks/useFeaturedProducts";
 import Loader from "../Controls/Loader.jsx";
 
-function App() {
+function HomePage() {
   const { dataFeaturedProd, isLoadingFeaturedProd } = useFeaturedProducts();
 
   return (
@@ -24,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;

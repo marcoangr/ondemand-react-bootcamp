@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./../../images/logo-store.svg";
 import cart from "./../../images/shopping-cart.svg";
 import "./header-styles.css";
 import { Link } from "react-router-dom";
@@ -12,8 +11,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="col-logo">
-        <Link to="/">
-          <img src={logo} alt="Grovee's Store" className="logo" />
+        <Link to="/" className="commpany-name">
+          Grovee's Store
         </Link>
       </div>
       <div className="col-search">

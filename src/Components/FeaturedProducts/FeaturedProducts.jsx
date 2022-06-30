@@ -1,12 +1,13 @@
 import React from "react";
 import "./FeaturedProducts.css";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function FeaturedProducts({ data, parent }) {
   return (
     <div className="container">
       {parent === "home" && <h1>Best sellers</h1>}
-      <ul
+      <div
         className={
           parent === "home"
             ? "products"
@@ -16,24 +17,26 @@ export default function FeaturedProducts({ data, parent }) {
         }
       >
         {data?.map((record, index) => (
-          <li className={"card-p"} key={record.id}>
+          <div className={"card-p"} key={record.id}>
             <img
               src={record.data.mainimage.url + "&w=500&h=700"}
               alt="Denim Jeans"
               style={{ width: "100%" }}
             />
             <Link to={"/product/" + record.id} className="link">
-              <h3>{record.data.name}</h3>
+              <h3 className="title">{record.data.name}</h3>
             </Link>
             <p className="price">{"$" + record.data.price}</p>
             {parent === "search" && (
               <p className="description">{record.data.short_description}</p>
             )}
-            <span className="category">{record.data.category.slug}</span>
+            <span className="category">
+              {record.data.category.slug.replace("--", " & ")}
+            </span>
             <button key={"btn-" + index}>Add to Cart</button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
       {parent === "home" && (
         <Link to="/products" id={"btn-see-all"} className="btn-see-all">
           Ver todos los productos
@@ -42,3 +45,8 @@ export default function FeaturedProducts({ data, parent }) {
     </div>
   );
 }
+
+FeaturedProducts.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape),
+  parent: PropTypes.string,
+};

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Quantity = ({ maxValue }) => {
   const [value, setValue] = useState(1);
@@ -35,4 +36,7 @@ const Quantity = ({ maxValue }) => {
   );
 };
 
+Quantity.propTypes = {
+  maxValue: PropTypes.number,
+};
 export default Quantity;

@@ -1,32 +1,28 @@
 import React, { useState } from "react";
 import { useCategories } from "./../../utils/hooks/useCategories";
 import Loader from "../Controls/Loader";
-import { Link } from "react-router-dom";
+import CategoryItem from "./CategoryItem";
+import PropTypes from "prop-types";
 
-export default function CategoryList(props) {
+export default function CategoryList({ start, itemsPerRow: lastItem }) {
   const { dataCategories, isLoadingCategories } = useCategories();
   const [seeMore, setSeeMore] = useState(false);
 
   if (isLoadingCategories) {
     return <Loader />;
   }
-  let lastItem = props.itemsPerRow;
+
   return (
     <>
       <div className="row">
-        <CategoryItem
-          start={props.start}
-          lastItem={lastItem}
-          list={dataCategories.results}
-        />
+        {dataCategories?.results.slice(start, lastItem).map((record) => (
+          <CategoryItem key={record.id} record={record} />
+        ))}
 
-        {seeMore && (
-          <CategoryItem
-            start={lastItem}
-            lastItem={dataCategories.results.length}
-            list={dataCategories.results}
-          />
-        )}
+        {seeMore &&
+          dataCategories?.results
+            .slice(lastItem)
+            .map((record) => <CategoryItem record={record} />)}
       </div>
 
       <button
@@ -40,22 +36,7 @@ export default function CategoryList(props) {
   );
 }
 
-function CategoryItem({ start, lastItem, list }) {
-  return list.slice(start, lastItem).map((record) => (
-    <div className="column" key={record.id}>
-      <img
-        className="card"
-        src={record.data.main_image.url.replace(
-          /(&w=([0-9]+&h=[0-9]+))/g,
-          "&w=180&h=120"
-        )}
-        alt={""}
-      />
-      <div id="title">
-        <Link className="link" to={"/products?category=" + record.data.name}>
-          {record.data.name}
-        </Link>
-      </div>
-    </div>
-  ));
-}
+CategoryList.propTypes = {
+  start: PropTypes.number,
+  lastItem: PropTypes.number,
+};

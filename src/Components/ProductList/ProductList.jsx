@@ -6,7 +6,8 @@ import PaginationControls from "../Controls/Pagination";
 import Loader from "../Controls/Loader.jsx";
 import { useProducts } from "../../utils/hooks/useProducts";
 import { useSearchParams } from "react-router-dom";
-const ITEMS_PER_PAGE = 9;
+
+const ITEMS_PER_PAGE = 16;
 let timestamp;
 const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,39 +50,43 @@ const ProductList = () => {
       </div>
       <div className="products-container">
         <aside className="aside-filter">
-          <div
-            style={{
-              backgroundColor: "rgb(237, 225, 102)",
-              color: "red",
-              padding: "10px",
-              fontWeight: "700",
-            }}
-          >
-            Categorias
+          <div className="sticky-container">
+            <span
+              style={{
+                display: "block",
+                backgroundColor: "rgb(237, 225, 102)",
+                color: "red",
+                padding: "10px",
+                fontWeight: "700",
+              }}
+            >
+              {" "}
+              Categories
+            </span>
+            <ul className="aside-categories">
+              {isLoadingCategories && <Loader />}
+              {!isLoadingCategories &&
+                dataCategories?.results?.map((item, index) => (
+                  <FilterItem
+                    key={"ac-" + item.id + timestamp}
+                    item={item}
+                    setFilter={setFilter}
+                    filter={filter}
+                  />
+                ))}
+              {filter.size > 0 && (
+                <button
+                  className={"btn-see-more"}
+                  onClick={() => {
+                    setFilter(new Map());
+                    timestamp = new Date().getTime();
+                  }}
+                >
+                  Remove filters
+                </button>
+              )}
+            </ul>
           </div>
-          <ul className="aside-categories">
-            {isLoadingCategories && <Loader />}
-            {!isLoadingCategories &&
-              dataCategories?.results?.map((item, index) => (
-                <FilterItem
-                  key={"ac-" + item.id + timestamp}
-                  item={item}
-                  setFilter={setFilter}
-                  filter={filter}
-                />
-              ))}
-            {filter.size > 0 && (
-              <button
-                className={"btn-see-more"}
-                onClick={() => {
-                  setFilter(new Map());
-                  timestamp = new Date().getTime();
-                }}
-              >
-                Remove filters
-              </button>
-            )}
-          </ul>
         </aside>
         {isLoadingProducts && <Loader />}
         {!isLoadingProducts && (
@@ -105,14 +110,18 @@ const FilterItem = ({ item, setFilter, filter }) => {
   const [isActive, setIsActive] = useState("normal");
 
   function updateFilter() {
-    if (isActive === "normal") {
-      setFilter(new Map(filter.set(item.data.name.toLowerCase(), item.id)));
-      setIsActive("active");
-    } else {
+    if (isActive === "active") {
       filter.delete(item.data.name.toLowerCase());
-      setFilter(new Map(filter));
-      setIsActive("normal");
     }
+
+    const newFilters =
+      isActive === "normal"
+        ? new Map(filter.set(item.data.name.toLowerCase(), item.id))
+        : new Map(filter);
+    const newActive = isActive === "normal" ? "active" : "normal";
+
+    setIsActive(newActive);
+    setFilter(newFilters);
   }
   return (
     <li

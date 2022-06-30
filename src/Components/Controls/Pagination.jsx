@@ -1,8 +1,14 @@
 import React from "react";
 import "./Controls.css";
+import PropTypes from "prop-types";
+
 const VISIBLE_PAGES = 2;
 
-const PaginationControls = ({ pages, currentPage, setCurrentPage }) => {
+export default function PaginationControls({
+  pages,
+  currentPage,
+  setCurrentPage,
+}) {
   if (pages === 1) {
     return <></>;
   }
@@ -41,11 +47,15 @@ const PaginationControls = ({ pages, currentPage, setCurrentPage }) => {
       </div>
     </div>
   );
-};
+}
 
 const range = (start, end) => {
   let length = end - start + 1;
   return Array.from({ length }, (_, idx) => idx + start);
 };
 
-export default PaginationControls;
+PaginationControls.propTypes = {
+  pages: PropTypes.number,
+  currentPage: PropTypes.number,
+  setCurrentPage: PropTypes.func,
+};
