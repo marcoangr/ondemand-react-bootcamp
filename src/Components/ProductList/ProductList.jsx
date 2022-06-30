@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./ProductList.css";
 import { useCategories } from "./../../utils/hooks/useCategories";
-import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
-import PaginationControls from "../Controls/Pagination";
+
 import Loader from "../Controls/Loader.jsx";
 import { useProducts } from "../../utils/hooks/useProducts";
 import { useSearchParams } from "react-router-dom";
+import FilterItem from "./FilterItem.jsx";
+import Products from "./Products";
 
 const ITEMS_PER_PAGE = 16;
 let timestamp;
@@ -33,13 +34,11 @@ const ProductList = () => {
         })
       );
     }
-  }, [filter, products]);
 
-  useEffect(() => {
     if (searchParams.get("category") !== null) {
       setFilter(new Map([[searchParams.get("category").toLowerCase(), ""]]));
     }
-  }, [searchParams]);
+  }, [filter, products, searchParams]);
 
   return (
     <>
@@ -60,8 +59,7 @@ const ProductList = () => {
                 fontWeight: "700",
               }}
             >
-              {" "}
-              Categories
+              {"Categories"}
             </span>
             <ul className="aside-categories">
               {isLoadingCategories && <Loader />}
@@ -90,63 +88,19 @@ const ProductList = () => {
         </aside>
         {isLoadingProducts && <Loader />}
         {!isLoadingProducts && (
-          <Products
-            products={productsF}
-            pages={
-              filter?.size > 0
-                ? Math.ceil(productsF?.length / ITEMS_PER_PAGE)
-                : products?.total_pages
-            }
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+            <Products
+              products={productsF}
+              pages={
+                filter?.size > 0
+                  ? Math.ceil(productsF?.length / ITEMS_PER_PAGE)
+                  : products?.total_pages
+              }
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
         )}
       </div>
     </>
-  );
-};
-
-const FilterItem = ({ item, setFilter, filter }) => {
-  const [isActive, setIsActive] = useState("normal");
-
-  function updateFilter() {
-    if (isActive === "active") {
-      filter.delete(item.data.name.toLowerCase());
-    }
-
-    const newFilters =
-      isActive === "normal"
-        ? new Map(filter.set(item.data.name.toLowerCase(), item.id))
-        : new Map(filter);
-    const newActive = isActive === "normal" ? "active" : "normal";
-
-    setIsActive(newActive);
-    setFilter(newFilters);
-  }
-  return (
-    <li
-      className={filter.size > 0 ? isActive : "normal"}
-      onClick={updateFilter}
-    >
-      {item.data.name}
-    </li>
-  );
-};
-
-const Products = ({ products, pages, currentPage, setCurrentPage }) => {
-  return products?.length > 0 ? (
-    <section className="main-content">
-      <FeaturedProducts data={products} parent={"list"} />
-      <PaginationControls
-        pages={pages}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
-    </section>
-  ) : (
-    <section className="main-content">
-      <div className="no-data-found">Ooops! Intenta con otra categoria</div>
-    </section>
   );
 };
 
