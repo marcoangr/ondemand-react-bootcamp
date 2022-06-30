@@ -4,6 +4,7 @@ import ProductListPage from "./Components/ProductList/ProductListPage";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import ProductDetailsPage from "./Components/ProductDetails/ProductDetailsPage";
 import SearchResultsPage from "./Components/SearchResults/SearchResultsPage";
+import PageNotFound from "./PageNotFound";
 
 const Routes = () =>
   useRoutes([
@@ -13,6 +14,7 @@ const Routes = () =>
     { path: "/products?category", element: <ProductListPage /> },
     { path: "/product/:productId", element: <ProductDetailsPage /> },
     { path: "/search", element: <SearchResultsPage /> },
+    { path: "*", element: <PageNotFound /> },
   ]);
 
 function App() {
