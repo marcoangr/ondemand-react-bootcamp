@@ -1,19 +1,25 @@
-// import { useFeaturedBanners } from "./utils/hooks/useFeaturedBanners";
 import HomePage from "./Components/HomePage/HomePage";
 import "./App.css";
 import ProductListPage from "./Components/ProductList/ProductListPage";
-import Router from "./utils/Router";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import ProductDetailsPage from "./Components/ProductDetails/ProductDetailsPage";
+import SearchResultsPage from "./Components/SearchResults/SearchResultsPage";
+
+const Routes = () =>
+  useRoutes([
+    { path: "/", element: <HomePage /> },
+    { path: "/home", element: <HomePage /> },
+    { path: "/products", element: <ProductListPage /> },
+    { path: "/products?category", element: <ProductListPage /> },
+    { path: "/product/:productId", element: <ProductDetailsPage /> },
+    { path: "/search", element: <SearchResultsPage /> },
+  ]);
 
 function App() {
-  // const { data, isLoading } = useFeaturedBanners();
   return (
     <div className="App">
-      <Router path="/ondemand-react-bootcamp">
-        <HomePage />
-      </Router>
-
-      <Router path="/ondemand-react-bootcamp/all-products">
-        <ProductListPage />
+      <Router>
+        <Routes />
       </Router>
     </div>
   );

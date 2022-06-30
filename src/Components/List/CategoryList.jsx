@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import categoriesData from "./../../data/mocks/es-mx/product-categories.json";
+import { useCategories } from "./../../utils/hooks/useCategories";
+import Loader from "../Controls/Loader";
+import { Link } from "react-router-dom";
 
 export default function CategoryList(props) {
+  const { dataCategories, isLoadingCategories } = useCategories();
   const [seeMore, setSeeMore] = useState(false);
+
+  if (isLoadingCategories) {
+    return <Loader />;
+  }
   let lastItem = props.itemsPerRow;
   return (
     <>
@@ -10,14 +17,14 @@ export default function CategoryList(props) {
         <CategoryItem
           start={props.start}
           lastItem={lastItem}
-          list={categoriesData.results}
+          list={dataCategories.results}
         />
 
         {seeMore && (
           <CategoryItem
             start={lastItem}
-            lastItem={categoriesData.results.length}
-            list={categoriesData.results}
+            lastItem={dataCategories.results.length}
+            list={dataCategories.results}
           />
         )}
       </div>
@@ -44,7 +51,11 @@ function CategoryItem({ start, lastItem, list }) {
         )}
         alt={""}
       />
-      <div id="title">{record.data.name}</div>
+      <div id="title">
+        <Link className="link" to={"/products?category=" + record.data.name}>
+          {record.data.name}
+        </Link>
+      </div>
     </div>
   ));
 }

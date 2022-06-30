@@ -1,38 +1,51 @@
 import React, { useState, useEffect } from "react";
 import "./ProductList.css";
-import categoriesData from "./../../data/mocks/es-mx/product-categories.json";
+import { useCategories } from "./../../utils/hooks/useCategories";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
-import products from "./../../data/mocks/es-mx/products.json";
 import PaginationControls from "../Controls/Pagination";
 import Loader from "../Controls/Loader.jsx";
-
+import { useProducts } from "../../utils/hooks/useProducts";
+import { useSearchParams } from "react-router-dom";
+const ITEMS_PER_PAGE = 9;
+let timestamp;
 const ProductList = () => {
-  const [filter, setFilter] = useState([]);
-  const [productsF, setProducts] = useState(products.results);
-  const [isLoading, setLoading] = useState(true);
-  let timer = setTimeout(() => {
-    clearTimeout(timer);
-    return setLoading(false);
-  }, 2000);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams] = useSearchParams();
+  const { dataCategories, isLoadingCategories } = useCategories();
+  const { dataProducts: products, isLoadingProducts } = useProducts(
+    currentPage,
+    ITEMS_PER_PAGE
+  );
+  const [filter, setFilter] = useState(new Map());
+  const [productsF, setProducts] = useState(products);
 
   useEffect(() => {
-    if (filter.length === 0) {
-      setProducts(products.results);
+    if (filter.size === 0) {
+      setProducts(products?.results);
     } else {
+      setCurrentPage(1);
       setProducts(
-        products.results.filter(
-          (prod, j) =>
-            filter.find(
-              (currentFilter) => currentFilter.id === prod.data.category.id
-            ) !== undefined
-        )
+        products?.results?.filter((prod) => {
+          return (
+            filter.get(prod.data.category.slug.toLowerCase()) !== undefined
+          );
+        })
       );
     }
-  }, [filter]);
+  }, [filter, products]);
+
+  useEffect(() => {
+    if (searchParams.get("category") !== null) {
+      setFilter(new Map([[searchParams.get("category").toLowerCase(), ""]]));
+    }
+  }, [searchParams]);
+
   return (
     <>
       <div className={"current-filter"}>
-        {filter.map((item) => item.name).join(" • ")}
+        {Array.from(filter.keys())
+          .map((item) => item)
+          .join(" • ")}
       </div>
       <div className="products-container">
         <aside className="aside-filter">
@@ -47,18 +60,42 @@ const ProductList = () => {
             Categorias
           </div>
           <ul className="aside-categories">
-            {categoriesData.results.map((item, index) => (
-              <FilterItem
-                key={"ac-" + item.id}
-                item={item}
-                setFilter={setFilter}
-                filter={filter}
-              />
-            ))}
+            {isLoadingCategories && <Loader />}
+            {!isLoadingCategories &&
+              dataCategories?.results?.map((item, index) => (
+                <FilterItem
+                  key={"ac-" + item.id + timestamp}
+                  item={item}
+                  setFilter={setFilter}
+                  filter={filter}
+                />
+              ))}
+            {filter.size > 0 && (
+              <button
+                className={"btn-see-more"}
+                onClick={() => {
+                  setFilter(new Map());
+                  timestamp = new Date().getTime();
+                }}
+              >
+                Remove filters
+              </button>
+            )}
           </ul>
         </aside>
-        {isLoading && <Loader />}
-        {!isLoading && <Products products={productsF} />}
+        {isLoadingProducts && <Loader />}
+        {!isLoadingProducts && (
+          <Products
+            products={productsF}
+            pages={
+              filter?.size > 0
+                ? Math.ceil(productsF?.length / ITEMS_PER_PAGE)
+                : products?.total_pages
+            }
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </div>
     </>
   );
@@ -67,28 +104,35 @@ const ProductList = () => {
 const FilterItem = ({ item, setFilter, filter }) => {
   const [isActive, setIsActive] = useState("normal");
 
-  const updateFilter = () => {
+  function updateFilter() {
     if (isActive === "normal") {
-      setFilter([...filter, { id: item.id, name: item.data.name }]);
+      setFilter(new Map(filter.set(item.data.name.toLowerCase(), item.id)));
       setIsActive("active");
     } else {
-      setFilter(filter.filter((itemFilter) => itemFilter.id !== item.id));
+      filter.delete(item.data.name.toLowerCase());
+      setFilter(new Map(filter));
       setIsActive("normal");
     }
-  };
-
+  }
   return (
-    <li key={"li-" + item.id} className={isActive} onClick={updateFilter}>
+    <li
+      className={filter.size > 0 ? isActive : "normal"}
+      onClick={updateFilter}
+    >
       {item.data.name}
     </li>
   );
 };
 
-const Products = ({ products }) => {
-  return products.length > 0 ? (
+const Products = ({ products, pages, currentPage, setCurrentPage }) => {
+  return products?.length > 0 ? (
     <section className="main-content">
       <FeaturedProducts data={products} parent={"list"} />
-      <PaginationControls />
+      <PaginationControls
+        pages={pages}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </section>
   ) : (
     <section className="main-content">

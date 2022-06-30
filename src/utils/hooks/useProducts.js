@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { API_BASE_URL } from "../constants";
 import { useLatestAPI } from "./useLatestAPI";
 
-export function useFeaturedBanners() {
+export function useProducts(page, pageSize) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
-  const [featuredBanners, setFeaturedBanners] = useState(() => ({
-    dataBanners: {},
-    isLoadingBanners: true,
+  const [products, setProducts] = useState(() => ({
+    dataProducts: {},
+    isLoadingProducts: true,
   }));
 
   useEffect(() => {
@@ -18,19 +18,18 @@ export function useFeaturedBanners() {
 
     async function getFeaturedBanners() {
       try {
-        setFeaturedBanners({ data: {}, isLoadingBanners: true });
+        setProducts({ dataProducts: {}, isLoadingProducts: true });
         const url = `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-          '[[at(document.type, "banner")]]'
-        )}&lang=en-us&pageSize=5`;
-
+          '[[at(document.type, "product")]]'
+        )}&lang=en-us&page=${page}&pageSize=${pageSize}`;
         const response = await fetch(url, {
           signal: controller.signal,
         });
         const data = await response.json();
 
-        setFeaturedBanners({ dataBanners: data, isLoadingBanners: false });
+        setProducts({ dataProducts: data, isLoadingProducts: false });
       } catch (err) {
-        setFeaturedBanners({ dataBanners: {}, isLoadingBanners: false });
+        setProducts({ dataProducts: {}, isLoadingProducts: false });
         console.error(err);
       }
     }
@@ -40,7 +39,7 @@ export function useFeaturedBanners() {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading]);
+  }, [apiRef, isApiMetadataLoading, page, pageSize]);
 
-  return featuredBanners;
+  return products;
 }

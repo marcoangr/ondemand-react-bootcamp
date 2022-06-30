@@ -1,5 +1,5 @@
 .container {
-  width: 98%;
+  width: 95%;
   margin: auto;
   padding: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
@@ -75,9 +75,9 @@
   background-color: rgb(247, 202, 0);
 }
 
-.card-p img:hover {
+/* .card-p img:hover {
   padding: 16px;
-}
+} */
 
 .btn-see-all {
   display: block;

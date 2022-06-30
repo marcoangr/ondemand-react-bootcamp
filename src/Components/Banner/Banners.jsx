@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import "./slider-styles.css";
+import { useFeaturedBanners } from "./../../utils/hooks/useFeaturedBanners";
 import BtnSlider from "./BtnSlider.jsx";
+import Loader from "../Controls/Loader";
 
-const Banners = (props) => {
+const Banners = () => {
   const [slideIndex, setSlideIndex] = useState(1);
+  const { dataBanners, isLoadingBanners } = useFeaturedBanners();
+
+  if (isLoadingBanners) {
+    return <Loader />;
+  }
+
+  const size = dataBanners?.results?.length;
 
   const prevSlide = () => {
-    setSlideIndex(slideIndex > 1 ? slideIndex - 1 : props.size);
+    setSlideIndex(slideIndex > 1 ? slideIndex - 1 : size);
   };
 
   const nextSlide = () => {
-    setSlideIndex(slideIndex !== props.size ? slideIndex + 1 : 1);
+    setSlideIndex(slideIndex !== size ? slideIndex + 1 : 1);
   };
 
   return (
     <div className="container-slider">
-      {props.results.map((record, j) => (
+      {dataBanners.results.map((record, j) => (
         <div
           className={slideIndex === j + 1 ? "slide active-anim" : "slide"}
           key={record.id}
@@ -34,7 +43,7 @@ const Banners = (props) => {
       <BtnSlider moveSlide={nextSlide} direction={"next"} />
       <BtnSlider moveSlide={prevSlide} direction={"prev"} />
       <div className="container-dots">
-        {Array.from({ length: props.size }).map((item, index) => (
+        {Array.from({ length: size }).map((item, index) => (
           <div
             key={"d-" + index}
             className="dot"

@@ -1,0 +1,267 @@
+.container {
+  margin: 10px auto;
+}
+
+.slider-thumbnail {
+  width: 90%;
+  height: 500px;
+  margin: 10px auto;
+  display: flex;
+  box-shadow: 0px 4px 6px 1px rgba(0, 0, 0, 0.8);
+  align-items: center;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  flex: 2 80% 60%;
+}
+
+.thumbnail {
+  display: flex;
+  flex: 2 20% 10%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  background-color: #000;
+}
+
+.thumbnail .swiper-slide {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.thumbnail .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: rgb(0, 0, 0, 0.5);
+  padding: 5px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  padding: 10px;
+  color: black;
+  width: 90%;
+  margin: 10px auto 0;
+}
+
+.add-to-cart-btn {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: brown;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Quantity css*/
+.quantity-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.quantity-input:focus {
+  background: red;
+}
+
+.quantity-input__modifier {
+  width: 30px;
+  height: 30px;
+  background: #f3f3f3;
+  color: black;
+  font-weight: 700;
+  border: 0 solid #dbdbdb;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.quantity-input__modifier:hover {
+  background: #dadada;
+  color: #555555;
+}
+
+.quantity-input__screen {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  border: 0;
+  text-align: center;
+}
+
+/* Specs details */
+.specs {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  border-collapse: collapse;
+  width: 100%;
+  margin: auto;
+}
+
+.specs td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.specs td.spec-name {
+  background-color: lightgrey;
+  font-weight: 700;
+}
+
+.label {
+  display: block;
+  font-size: 19px;
+  font-weight: 700;
+  margin-left: 0;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* main detils */
+.small-div {
+  margin: 10px;
+  width: 30%;
+  flex: 3 100% 30%;
+}
+
+.price {
+  font-size: 38px;
+  color: rgb(105, 206, 133);
+}
+.sku {
+  color: lightgrey;
+}
+.sku,
+.price {
+  display: block;
+  width: 100%;
+  margin: 5px 0 5px 0;
+}
+
+/* rgb(237, 225, 102); */
+
+/* Tags css */
+.tag {
+  background: teal;
+  border-radius: 3px 0 0 3px;
+  color: white;
+  display: inline-block;
+  height: 20px;
+  padding: 0 20px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: "";
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 6px;
+}
+
+.category-2 {
+  display: block;
+  color: red;
+  padding: 10px;
+  font-weight: 700;
+  margin: 10px 20px 10px;
+}
+
+hr {
+  margin: 15px;
+}
+
+@media screen and (max-width: 900px) {
+  .title {
+    font-size: large;
+  }
+
+  .price {
+    font-size: 30px;
+  }
+
+  .sku {
+    font-size: small;
+    line-height: 0.8;
+    margin-top: 0;
+  }
+
+  .small-div {
+    overflow: scroll;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .slider-thumbnail {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .slider-thumbnail {
+    display: block;
+    height: fit-content;
+  }
+
+  .thumbnail {
+    display: none;
+  }
+  .small-div {
+    width: 100%;
+    padding: 10px;
+    margin: auto;
+  }
+}

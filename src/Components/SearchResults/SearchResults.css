@@ -1,0 +1,10 @@
+p.description {
+  height: 150px;
+  overflow-y: scroll;
+
+  margin: 20px auto;
+  text-align: left;
+  border-top: 3px dashed lightgray;
+  border-bottom: 3px dashed lightgray;
+  padding: 10px;
+}
