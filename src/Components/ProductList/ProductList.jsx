@@ -34,11 +34,15 @@ const ProductList = () => {
         })
       );
     }
+  }, [filter, products, searchParams]);
 
+  useEffect(()=>{
     if (searchParams.get("category") !== null) {
       setFilter(new Map([[searchParams.get("category").toLowerCase(), ""]]));
     }
-  }, [filter, products, searchParams]);
+
+  }, [searchParams]
+  );
 
   return (
     <>
