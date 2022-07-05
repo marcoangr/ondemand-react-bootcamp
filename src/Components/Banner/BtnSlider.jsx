@@ -1,6 +1,7 @@
 import React from "react";
 import leftArrow from "./../../images/left-arrow.svg";
 import rightArrow from "./../../images/right-arrow.svg";
+import PropTypes from "prop-types";
 
 const BtnSlider = ({ direction, moveSlide }) => {
   return (
@@ -16,4 +17,8 @@ const BtnSlider = ({ direction, moveSlide }) => {
   );
 };
 
+BtnSlider.propTypes = {
+  direction: PropTypes.string,
+  moveSlide: PropTypes.func,
+};
 export default BtnSlider;

@@ -1,38 +1,55 @@
-.header img:first-of-type {
-  width: 80px;
-  margin: 5px 10px;
-  float: left;
-}
-
-.header img:hover {
-  cursor: pointer;
-  transform: scale(1.2, 1.2);
-}
-
-.header img:last-child {
-  width: 40px;
-  border-radius: 100%;
-  float: right;
-  margin: 5px;
-}
-.search {
-  float: left;
-}
-
 .header {
-  background-color: #02111b;
+  display: flex;
+  flex-direction: row;
+  background-color: black;
   width: 100%;
-  overflow: hidden;
+  height: 100px;
   margin: auto;
   padding: 10px;
+  gap: 5px;
 }
 
-/* Search styles */
+.col-search {
+  flex: 3 100% auto;
+  margin: auto;
+}
+.col-logo,
+.col-cart {
+  flex: 1 100% auto;
+  margin: auto;
+}
 
-form.search {
-  max-width: 300px;
-  width: 50%;
-  margin: 5px 10px;
+.cart {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.commpany-name {
+  text-decoration: none;
+  font-size: 36px;
+  font-weight: 700;
+  background-image: linear-gradient(
+    -225deg,
+    rgb(0, 0, 0) 0%,
+    brown 50%,
+    rgb(190, 28, 28) 75%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
 }
 
 /* Style the search field */
@@ -41,28 +58,59 @@ form.search input[type="text"] {
   font-size: 17px;
   border: 1px solid grey;
   float: left;
-  width: 80%;
+  width: 85%;
   background: #f1f1f1;
+  border-radius: 10px 0 0 10px;
 }
 
 /* Style the submit button */
 form.search .btnSearch {
-  width: 20%;
+  width: 15%;
   padding: 10px;
   background: #b83434;
   color: white;
   font-size: 17px;
   border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
+  border-left: none;
   cursor: pointer;
 }
 
 form.search .btnSearch:hover {
-  background: #0b7dda;
+  background-color: lightgray;
 }
 
 /* Clear floats */
 form.search::after {
   content: "";
   clear: both;
+}
+
+@media screen and (max-width: 336px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .col-search {
+    flex-basis: 70%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .commpany-name {
+    font-size: 30px;
+  }
+  .cart {
+    width: 40px;
+  }
+  form.search input[type="text"] {
+    width: 75%;
+    font-size: 14px;
+  }
+
+  /* Style the submit button */
+  form.search .btnSearch {
+    width: 25%;
+    font-size: 14px;
+  }
 }

@@ -1,25 +1,34 @@
 import React from "react";
-import logo from "./../../images/logo-store.svg";
 import cart from "./../../images/shopping-cart.svg";
 import "./header-styles.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  function handleSearch() {
+    console.log("searching");
+  }
+
   return (
     <header className="header">
-      <img
-        src={logo}
-        alt="Grovee's Store"
-        onClick={() => {
-          window.location.href = "/ondemand-react-bootcamp";
-        }}
-      />
-      <form className="search">
-        <input type="text" placeholder="Search.." name="search" />
-        <button type="submit" className="btnSearch">
-          <i className="fa fa-search" />
-        </button>
-      </form>
-      <img src={cart} alt="shopping cart" />
+      <div className="col-logo">
+        <Link to="/" className="commpany-name">
+          Grovee's Store
+        </Link>
+      </div>
+      <div className="col-search">
+        <form className="search" action="/search">
+          <input type="text" placeholder="Search.." name="q" />
+          <button type="submit" className="btnSearch" onSubmit={handleSearch}>
+            <i className="fa fa-search" />
+          </button>
+        </form>
+      </div>
+
+      <div className="col-cart">
+        <Link to="/">
+          <img src={cart} alt="shopping cart" className="cart" />
+        </Link>
+      </div>
     </header>
   );
 };

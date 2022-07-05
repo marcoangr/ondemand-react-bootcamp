@@ -1,25 +1,28 @@
 import React, { useState } from "react";
-import categoriesData from "./../../data/mocks/es-mx/product-categories.json";
+import { useCategories } from "./../../utils/hooks/useCategories";
+import Loader from "../Controls/Loader";
+import CategoryItem from "./CategoryItem";
+import PropTypes from "prop-types";
 
-export default function CategoryList(props) {
+export default function CategoryList({ start, itemsPerRow: lastItem }) {
+  const { dataCategories, isLoadingCategories } = useCategories();
   const [seeMore, setSeeMore] = useState(false);
-  let lastItem = props.itemsPerRow;
+
+  if (isLoadingCategories) {
+    return <Loader />;
+  }
+
   return (
     <>
       <div className="row">
-        <CategoryItem
-          start={props.start}
-          lastItem={lastItem}
-          list={categoriesData.results}
-        />
+        {dataCategories?.results.slice(start, lastItem).map((record) => (
+          <CategoryItem key={record.id} record={record} />
+        ))}
 
-        {seeMore && (
-          <CategoryItem
-            start={lastItem}
-            lastItem={categoriesData.results.length}
-            list={categoriesData.results}
-          />
-        )}
+        {seeMore &&
+          dataCategories?.results
+            .slice(lastItem)
+            .map((record) => <CategoryItem record={record} />)}
       </div>
 
       <button
@@ -33,18 +36,7 @@ export default function CategoryList(props) {
   );
 }
 
-function CategoryItem({ start, lastItem, list }) {
-  return list.slice(start, lastItem).map((record) => (
-    <div className="column" key={record.id}>
-      <img
-        className="card"
-        src={record.data.main_image.url.replace(
-          /(&w=([0-9]+&h=[0-9]+))/g,
-          "&w=180&h=120"
-        )}
-        alt={""}
-      />
-      <div id="title">{record.data.name}</div>
-    </div>
-  ));
-}
+CategoryList.propTypes = {
+  start: PropTypes.number,
+  lastItem: PropTypes.number,
+};
