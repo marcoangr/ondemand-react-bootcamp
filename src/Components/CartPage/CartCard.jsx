@@ -9,6 +9,13 @@ export default function Cartcard({ productId = "", quantity = 0 }) {
   const { areLoadingDetails, productDetails } = useProductDetails(productId);
   const { removeFromCart } = useContext(ShoppingCartContext);
 
+  if (productDetails[0] === undefined) {
+    return null;
+  }
+  const {
+    data: { name, sku, price, stock, mainimage },
+  } = productDetails[0];
+
   if (areLoadingDetails) {
     return <Loader />;
   }
@@ -16,28 +23,25 @@ export default function Cartcard({ productId = "", quantity = 0 }) {
   return (
     <div className="card-cart">
       <div className="main-image">
-        <img
-          src={productDetails[0]?.data?.mainimage.url + "&w=500&h=700"}
-          alt={""}
-        />
+        <img src={mainimage.url + "&w=500&h=700"} alt={""} />
       </div>
       <div className="main-data">
         <div className="col-1">
-          <h4 className="title">{productDetails[0]?.data?.name}</h4>
-          <span className="sku">SKU: {productDetails[0]?.data?.sku}</span>
-          <span className="price">${productDetails[0]?.data?.price}</span>
+          <h4 className="title">{name}</h4>
+          <span className="sku">SKU: {sku}</span>
+          <span className="price">${price}</span>
         </div>
 
         <div className="col-2">
           <Quantity
             productId={productId}
-            maxValue={productDetails[0]?.data?.stock}
+            maxValue={stock}
             currentQuantity={quantity}
             parent="cart"
-            unitPrice={productDetails[0]?.data?.price}
+            unitPrice={price}
           />
           <p style={{ color: "gray", marginTop: "0px" }}>
-            Stock available: {productDetails[0]?.data?.stock}
+            Stock available: {stock}
           </p>
 
           <span

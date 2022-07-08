@@ -21,6 +21,15 @@ export default function ProductDetails() {
     return <Loader />;
   }
 
+  if (productDetails[0] === undefined) {
+    return null;
+  }
+
+  const {
+    id,
+    tags,
+    data: { images, name, sku, price, category, stock, description },
+  } = productDetails[0];
   return (
     <>
       <div className="slider-thumbnail">
@@ -34,7 +43,7 @@ export default function ProductDetails() {
           className="thumbnail"
           direction={"vertical"}
         >
-          {productDetails[0]?.data?.images?.map((item) => {
+          {images.map((item) => {
             return (
               <SwiperSlide key={Math.random() * 100}>
                 <img
@@ -57,7 +66,7 @@ export default function ProductDetails() {
           thumbs={{ swiper: thumbsSwiper }}
           className="mySwiper2"
         >
-          {productDetails[0]?.data?.images?.map((item) => {
+          {images?.map((item) => {
             return (
               <SwiperSlide key={Math.random() * 100}>
                 <img
@@ -71,31 +80,29 @@ export default function ProductDetails() {
         </Swiper>
 
         <div className="small-div">
-          <h2 className="title">{productDetails[0]?.data?.name}</h2>
-          <span className="sku">SKU: {productDetails[0]?.data?.sku}</span>
-          <span className="price">${productDetails[0]?.data?.price}</span>
+          <h2 className="title">{name}</h2>
+          <span className="sku">SKU: {sku}</span>
+          <span className="price">${price}</span>
           <hr />
           <span className="category-2">
             <b>Category {">"} </b>
-            {productDetails[0]?.data?.category.slug}
+            {category.slug}
           </span>
           <hr />
           <div>
-            {productDetails[0]?.tags.map((tag) => (
+            {tags.map((tag) => (
               <a key={"tag-" + tag} className="tag" href="!">
                 {tag}
               </a>
             ))}
           </div>
-          <p style={{ color: "gray" }}>
-            Stock available: {productDetails[0]?.data?.stock}
-          </p>
+          <p style={{ color: "gray" }}>Stock available: {stock}</p>
 
           <Quantity
-            maxValue={productDetails[0]?.data?.stock}
-            productId={productDetails[0]?.id}
+            maxValue={stock}
+            productId={id}
             parent={"details"}
-            unitPrice={productDetails[0]?.data?.price}
+            unitPrice={price}
           />
         </div>
       </div>
@@ -109,7 +116,7 @@ export default function ProductDetails() {
             fontSize: "16px",
           }}
         >
-          {productDetails[0]?.data?.description[0]?.text}
+          {description[0]?.text}
         </p>
         <hr />
         <span className="label"> Specifications</span>

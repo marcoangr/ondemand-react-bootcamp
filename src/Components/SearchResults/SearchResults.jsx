@@ -8,13 +8,12 @@ import "./SearchResults.css";
 const ITEMS_PER_PAGE = 20;
 
 const SearchResults = () => {
-  let [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const { dataProducts, isLoadingProducts } = useSearch(
-    searchParams.get("q"),
-    currentPage,
-    ITEMS_PER_PAGE
-  );
+  const {
+    dataProducts: { results, total_pages },
+    isLoadingProducts,
+  } = useSearch(searchParams.get("q"), currentPage, ITEMS_PER_PAGE);
 
   if (isLoadingProducts) {
     return <Loader />;
@@ -23,15 +22,14 @@ const SearchResults = () => {
   return (
     <>
       <h1>
-        {dataProducts?.results?.length === 0 && "No "}Results for "
-        {searchParams.get("q")}"
+        {results?.length === 0 && "No "}Results for "{searchParams.get("q")}"
       </h1>
-      <FeaturedProducts data={dataProducts?.results} parent={"search"} />
+      <FeaturedProducts data={results} parent={"search"} />
       <PaginationControls
         pages={
-          dataProducts?.results?.length > 0
-            ? Math.ceil(dataProducts?.results?.length / ITEMS_PER_PAGE)
-            : dataProducts?.total_pages
+          results?.length > 0
+            ? Math.ceil(results?.length / ITEMS_PER_PAGE)
+            : total_pages
         }
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}

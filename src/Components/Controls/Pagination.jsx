@@ -9,7 +9,7 @@ export default function PaginationControls({
   currentPage,
   setCurrentPage,
 }) {
-  if (pages === 1) {
+  if (pages === 1 || pages === 0) {
     return <></>;
   }
   const start =
@@ -17,15 +17,18 @@ export default function PaginationControls({
   const end =
     currentPage + VISIBLE_PAGES >= pages ? pages : currentPage + VISIBLE_PAGES;
 
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage < pages ? currentPage + 1 : currentPage);
+  };
+
   return (
     <div className="center">
       <div className="pagination">
-        <span
-          href="#prev"
-          onClick={() =>
-            setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
-          }
-        >
+        <span href="#prev" onClick={handlePrevPage}>
           &laquo;
         </span>
         {range(start, end).map((page) => (
@@ -37,20 +40,14 @@ export default function PaginationControls({
             {page}
           </span>
         ))}
-        <span
-          onClick={() =>
-            setCurrentPage(currentPage < pages ? currentPage + 1 : currentPage)
-          }
-        >
-          &raquo;
-        </span>
+        <span onClick={handleNextPage}>&raquo;</span>
       </div>
     </div>
   );
 }
 
 const range = (start, end) => {
-  let length = end - start + 1;
+  const length = end - start + 1;
   return Array.from({ length }, (_, idx) => idx + start);
 };
 
