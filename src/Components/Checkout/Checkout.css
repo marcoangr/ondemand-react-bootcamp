@@ -1,0 +1,135 @@
+.customer-information {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.customer-information h1 {
+  margin: 0px auto;
+}
+.dashed-separator {
+  border: 2px dashed #ddd;
+}
+.col-input {
+  position: relative;
+}
+
+.user-input {
+  width: 50%;
+  padding: 10px;
+  margin: 5px auto 22px auto;
+  display: inline-block;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+#userZip {
+  width: 30%;
+  margin-left: -20%;
+}
+
+.place-holder {
+  position: absolute;
+  left: 27%;
+  font-size: 14px;
+  color: #ddd;
+  padding: 0 10px;
+  margin-top: 15px;
+}
+
+.col-input .user-input:focus {
+  border: 2px solid orange;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#userNotes {
+  width: 70%;
+  height: 200px;
+}
+
+.btn-submit,
+.btn-cancel {
+  position: sticky;
+  bottom: 20px;
+  left: 40%;
+  width: 20%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+
+  color: white;
+  font-weight: 700;
+
+  cursor: pointer;
+  margin-top: -1em;
+}
+
+.btn-submit {
+  background-color: orange;
+  margin-right: 20px;
+}
+
+.btn-cancel {
+  background-color: skyblue;
+  margin-left: 20px;
+}
+
+.checkout-btn-container {
+  margin-top: 20px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none;
+}
+
+.user-input:focus + label,
+.user-input:valid + label {
+  background-color: white;
+  top: -20px;
+  color: black;
+}
+
+/* sumary table */
+
+.sumary {
+  gap: 0.8em;
+}
+
+.card-sumary {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  height: 150px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-sumary .main-image {
+  background-color: rgb(250, 235, 215, 0.3);
+  padding: 10px;
+  width: 25%;
+}
+
+.card-sumary .main-data {
+  width: 75%;
+}
+.card-sumary .main-image img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+.card-sumary .col-1 {
+  width: 100%;
+}
+
+.no-sticky {
+  position: unset;
+  display: inline-block;
+  margin-bottom: 10px;
+}

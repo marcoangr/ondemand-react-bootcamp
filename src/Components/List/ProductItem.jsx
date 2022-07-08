@@ -11,7 +11,6 @@ export default function ProductItem({ record }) {
       <h3>{record.data.name}</h3>
       <p className="price">{"$" + record.data.price}</p>
       <span className="category">{record.data.category.slug}</span>
-      <button key={"btn-" + record.id}>Add to Cart</button>
     </div>
   );
 }

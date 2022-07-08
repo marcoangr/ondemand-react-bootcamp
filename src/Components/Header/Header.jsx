@@ -1,13 +1,9 @@
 import React from "react";
-import cart from "./../../images/shopping-cart.svg";
 import "./header-styles.css";
 import { Link } from "react-router-dom";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const Header = () => {
-  function handleSearch() {
-    console.log("searching");
-  }
-
   return (
     <header className="header">
       <div className="col-logo">
@@ -18,16 +14,14 @@ const Header = () => {
       <div className="col-search">
         <form className="search" action="/search">
           <input type="text" placeholder="Search.." name="q" />
-          <button type="submit" className="btnSearch" onSubmit={handleSearch}>
+          <button type="submit" className="btnSearch">
             <i className="fa fa-search" />
           </button>
         </form>
       </div>
 
       <div className="col-cart">
-        <Link to="/">
-          <img src={cart} alt="shopping cart" className="cart" />
-        </Link>
+        <ShoppingCart />
       </div>
     </header>
   );

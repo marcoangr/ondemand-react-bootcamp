@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export default function FilterItem({ item, setFilter, filter }) {
   const [isActive, setIsActive] = useState("normal");
@@ -26,3 +27,9 @@ export default function FilterItem({ item, setFilter, filter }) {
     </li>
   );
 }
+
+FilterItem.propTypes = {
+  item: PropTypes.object,
+  setFilter: PropTypes.func,
+  filter: PropTypes.object,
+};

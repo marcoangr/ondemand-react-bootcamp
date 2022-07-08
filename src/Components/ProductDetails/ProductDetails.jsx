@@ -87,10 +87,16 @@ export default function ProductDetails() {
               </a>
             ))}
           </div>
+          <p style={{ color: "gray" }}>
+            Stock available: {productDetails[0]?.data?.stock}
+          </p>
 
-          <label htmlFor="quantity">Quantity:</label>
-          <Quantity maxValue={productDetails[0]?.data?.stock} />
-          <button className="add-to-cart-btn">Add to cart</button>
+          <Quantity
+            maxValue={productDetails[0]?.data?.stock}
+            productId={productDetails[0]?.id}
+            parent={"details"}
+            unitPrice={productDetails[0]?.data?.price}
+          />
         </div>
       </div>
       <div className="container">

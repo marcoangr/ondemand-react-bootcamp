@@ -1,0 +1,38 @@
+.shopping-cart {
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  background-color: sandybrown;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.shopping-cart .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 4px 8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+}
+
+.shopping-cart img {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(104deg)
+    brightness(103%) contrast(103%);
+  width: 50px;
+  height: 50px;
+}
+
+/* @media screen and (max-width: 390px) {
+  .commpany-name {
+    font-size: 30px;
+  }
+  .cart img {
+    width: 40px;
+  }
+  form.search input[type="text"] {
+    width: 75%;
+    font-size: 14px;
+  }
+} */

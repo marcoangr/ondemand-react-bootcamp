@@ -1,5 +1,3 @@
-import Header from "./../Header/Header.jsx";
-import Footer from "./../Footer/Footer.jsx";
 import Banners from "./../Banner/Banners.jsx";
 import Categories from "./../Categories/Categories.jsx";
 import FeaturedProducts from "./../FeaturedProducts/FeaturedProducts.jsx";
@@ -11,7 +9,6 @@ function HomePage() {
 
   return (
     <>
-      <Header />
       <Banners />
       <Categories />
       {!isLoadingFeaturedProd ? (
@@ -19,7 +16,6 @@ function HomePage() {
       ) : (
         <Loader />
       )}
-      <Footer />
     </>
   );
 }
