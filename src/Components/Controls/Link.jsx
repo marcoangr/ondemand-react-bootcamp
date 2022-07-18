@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 export default function Link({ className, href, children }) {
   const onClick = (event) => {
-    console.log("click");
-
     event.preventDefault();
     window.history.pushState({}, "", href);
 

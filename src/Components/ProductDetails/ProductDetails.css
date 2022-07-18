@@ -98,41 +98,6 @@
   margin-top: 10px;
 }
 
-/* Quantity css*/
-.quantity-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-.quantity-input:focus {
-  background: red;
-}
-
-.quantity-input__modifier {
-  width: 30px;
-  height: 30px;
-  background: #f3f3f3;
-  color: black;
-  font-weight: 700;
-  border: 0 solid #dbdbdb;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-}
-.quantity-input__modifier:hover {
-  background: #dadada;
-  color: #555555;
-}
-
-.quantity-input__screen {
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
-  border: 0;
-  text-align: center;
-}
-
 /* Specs details */
 .specs {
   font-family: Arial, Helvetica, sans-serif;

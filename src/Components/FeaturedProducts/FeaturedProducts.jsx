@@ -2,6 +2,7 @@ import React from "react";
 import "./FeaturedProducts.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Add2CartBtn from "../Controls/Add2CartBtn";
 
 export default function FeaturedProducts({ data, parent }) {
   return (
@@ -33,7 +34,7 @@ export default function FeaturedProducts({ data, parent }) {
             <span className="category">
               {record.data.category.slug.replace("--", " & ")}
             </span>
-            <button key={"btn-" + index}>Add to Cart</button>
+            <Add2CartBtn productId={record.id} price={record.data.price} />
           </div>
         ))}
       </div>

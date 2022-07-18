@@ -34,11 +34,42 @@
   margin: auto;
   width: 40px;
   height: 40px;
-  border: 5px solid rgb(237, 225, 102);
+  border: 5px solid white;
   border-radius: 50%;
-  border-top: 5px solid #f61067;
+  border-top: 5px solid skyblue;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 1s linear infinite;
+}
+
+/* Quantity css*/
+
+.quantity-input:focus {
+  background: red;
+}
+
+.quantity-input__modifier {
+  width: 30px;
+  height: 30px;
+  background: #f3f3f3;
+  color: black;
+  font-weight: 700;
+  font-size: 18px;
+  border: 0 solid #dbdbdb;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.quantity-input__modifier:hover {
+  background: #dadada;
+  color: #555555;
+}
+
+.quantity-input__screen {
+  width: 40px;
+  height: 30px;
+  font-size: 18px;
+  border: 0;
+  text-align: center;
 }
 
 @-webkit-keyframes spin {

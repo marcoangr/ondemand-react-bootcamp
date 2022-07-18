@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./ProductList.css";
-import { useCategories } from "./../../utils/hooks/useCategories";
 
 import Loader from "../Controls/Loader.jsx";
-import { useProducts } from "../../utils/hooks/useProducts";
 import { useSearchParams } from "react-router-dom";
 import FilterItem from "./FilterItem.jsx";
 import Products from "./Products";
+import { useGetData } from "../../utils/hooks/useGetData";
+
+import {
+  API_CATEGORIES_URL,
+  API_PRODUCTS_URL,
+  urlHandlingPagination,
+} from "../../utils/api-urls";
 
 const ITEMS_PER_PAGE = 16;
 let timestamp;
 const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams] = useSearchParams();
-  const { dataCategories, isLoadingCategories } = useCategories();
-  const { dataProducts: products, isLoadingProducts } = useProducts(
-    currentPage,
-    ITEMS_PER_PAGE
+  const { data: dataCategories, isLoading: isLoadingCategories } =
+    useGetData(API_CATEGORIES_URL);
+  const { data: products, isLoading: isLoadingProducts } = useGetData(
+    urlHandlingPagination(API_PRODUCTS_URL, currentPage, ITEMS_PER_PAGE)
   );
   const [filter, setFilter] = useState(new Map());
   const [productsF, setProducts] = useState(products);
@@ -36,13 +41,11 @@ const ProductList = () => {
     }
   }, [filter, products, searchParams]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (searchParams.get("category") !== null) {
       setFilter(new Map([[searchParams.get("category").toLowerCase(), ""]]));
     }
-
-  }, [searchParams]
-  );
+  }, [searchParams]);
 
   return (
     <>
@@ -92,16 +95,16 @@ const ProductList = () => {
         </aside>
         {isLoadingProducts && <Loader />}
         {!isLoadingProducts && (
-            <Products
-              products={productsF}
-              pages={
-                filter?.size > 0
-                  ? Math.ceil(productsF?.length / ITEMS_PER_PAGE)
-                  : products?.total_pages
-              }
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
+          <Products
+            products={productsF}
+            pages={
+              filter?.size > 0
+                ? Math.ceil(productsF?.length / ITEMS_PER_PAGE)
+                : products?.total_pages
+            }
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         )}
       </div>
     </>

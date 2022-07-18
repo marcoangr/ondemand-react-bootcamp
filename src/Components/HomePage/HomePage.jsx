@@ -1,25 +1,22 @@
-import Header from "./../Header/Header.jsx";
-import Footer from "./../Footer/Footer.jsx";
 import Banners from "./../Banner/Banners.jsx";
 import Categories from "./../Categories/Categories.jsx";
 import FeaturedProducts from "./../FeaturedProducts/FeaturedProducts.jsx";
-import { useFeaturedProducts } from "./../../utils/hooks/useFeaturedProducts";
+import { useGetData } from "../../utils/hooks/useGetData";
 import Loader from "../Controls/Loader.jsx";
+import { API_FEATUREDPEODUCTS_URL } from "./../../utils/api-urls";
 
 function HomePage() {
-  const { dataFeaturedProd, isLoadingFeaturedProd } = useFeaturedProducts();
+  const { data, isLoading } = useGetData(API_FEATUREDPEODUCTS_URL);
 
   return (
     <>
-      <Header />
       <Banners />
       <Categories />
-      {!isLoadingFeaturedProd ? (
-        <FeaturedProducts data={dataFeaturedProd?.results} parent={"home"} />
+      {!isLoading ? (
+        <FeaturedProducts data={data?.results} parent={"home"} />
       ) : (
         <Loader />
       )}
-      <Footer />
     </>
   );
 }

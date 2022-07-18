@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import "./slider-styles.css";
-import { useFeaturedBanners } from "./../../utils/hooks/useFeaturedBanners";
+import { useGetData } from "../../utils/hooks/useGetData";
 import BtnSlider from "./BtnSlider.jsx";
 import Loader from "../Controls/Loader";
+import { API_FEATUREDBANNERS_URL } from "../../utils/api-urls";
 
 const Banners = () => {
   const [slideIndex, setSlideIndex] = useState(1);
-  const { dataBanners, isLoadingBanners } = useFeaturedBanners();
+  const { data, isLoading } = useGetData(API_FEATUREDBANNERS_URL);
 
-  if (isLoadingBanners) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  const size = dataBanners?.results?.length;
+  if (data.results === undefined) {
+    return null;
+  }
+  const size = data.results.length;
 
   const prevSlide = () => {
     setSlideIndex(slideIndex > 1 ? slideIndex - 1 : size);
@@ -24,7 +28,7 @@ const Banners = () => {
 
   return (
     <div className="container-slider">
-      {dataBanners.results.map((record, j) => (
+      {data.results.map((record, j) => (
         <div
           className={slideIndex === j + 1 ? "slide active-anim" : "slide"}
           key={record.id}

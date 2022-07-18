@@ -2,19 +2,19 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default function CategoryItem({ record }) {
+  const {
+    data: { main_image, name },
+  } = record;
   return (
     <div className="column">
       <img
         className="card"
-        src={record.data.main_image.url.replace(
-          /(&w=([0-9]+&h=[0-9]+))/g,
-          "&w=180&h=120"
-        )}
+        src={main_image.url.replace(/(&w=([0-9]+&h=[0-9]+))/g, "&w=180&h=120")}
         alt={""}
       />
       <div id="title">
-        <Link className="link" to={"/products?category=" + record.data.name}>
-          {record.data.name}
+        <Link className="link" to={"/products?category=" + name}>
+          {name}
         </Link>
       </div>
     </div>

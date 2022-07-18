@@ -19,11 +19,6 @@
   margin: auto;
 }
 
-.cart {
-  width: 50px;
-  border-radius: 50%;
-}
-
 .commpany-name {
   text-decoration: none;
   font-size: 36px;
@@ -100,7 +95,7 @@ form.search::after {
   .commpany-name {
     font-size: 30px;
   }
-  .cart {
+  .cart img {
     width: 40px;
   }
   form.search input[type="text"] {
