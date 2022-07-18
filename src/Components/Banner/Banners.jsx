@@ -3,19 +3,19 @@ import "./slider-styles.css";
 import { useGetData } from "../../utils/hooks/useGetData";
 import BtnSlider from "./BtnSlider.jsx";
 import Loader from "../Controls/Loader";
+import { API_FEATUREDBANNERS_URL } from "../../utils/api-urls";
 
 const Banners = () => {
   const [slideIndex, setSlideIndex] = useState(1);
-  const { data, isLoading } = useGetData();
+  const { data, isLoading } = useGetData(API_FEATUREDBANNERS_URL);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  if (data === undefined) {
+  if (data.results === undefined) {
     return null;
   }
-
   const size = data.results.length;
 
   const prevSlide = () => {

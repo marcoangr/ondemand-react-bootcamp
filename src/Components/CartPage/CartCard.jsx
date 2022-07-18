@@ -13,14 +13,16 @@ export default function Cartcard({ productId = "", quantity = 0 }) {
   const { data, isLoading } = useGetData(
     urlHandlingSearch(API_PRODUCTDETAILS_URL, productId)
   );
+
   const { removeFromCart } = useContext(ShoppingCartContext);
 
-  if (data[0] === undefined) {
+  if (data.results === undefined) {
     return null;
   }
+
   const {
     data: { name, sku, price, stock, mainimage },
-  } = data[0];
+  } = data.results[0];
 
   if (isLoading) {
     return <Loader />;

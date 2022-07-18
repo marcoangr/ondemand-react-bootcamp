@@ -1,10 +1,14 @@
 import { API_BASE_URL } from "./constants";
 
-export const API_FEATUREDBANNERS_URL = `${API_BASE_URL}/documents/search?ref={apiRef}&q=${encodeURIComponent(
+export const API_FEATUREDPEODUCTS_URL = `${API_BASE_URL}/documents/search?ref={apiRef}&q=${encodeURIComponent(
   '[[at(document.type, "product")]]'
 )}&q=${encodeURIComponent(
   '[[at(document.tags, ["Featured"])]]'
 )}&lang=en-us&pageSize=16`;
+
+export const API_FEATUREDBANNERS_URL = `${API_BASE_URL}/documents/search?ref={apiRef}&q=${encodeURIComponent(
+  '[[at(document.type, "banner")]]'
+)}&lang=en-us&pageSize=5`;
 
 export const API_CATEGORIES_URL = `${API_BASE_URL}/documents/search?ref={apiRef}&q=${encodeURIComponent(
   '[[at(document.type, "category")]]'
@@ -15,12 +19,13 @@ export const API_PRODUCTS_URL = `${API_BASE_URL}/documents/search?ref={apiRef}&q
 )}&lang=en-us`;
 
 export const API_PRODUCTDETAILS_URL = `${API_BASE_URL}/documents/search?ref={apiRef}&q=${encodeURIComponent(
-  '[[at(document.id, "{searchP}")]]'
+  '[[at(document.id, "searchP")]]'
 )}`;
 
 export const API_SEARCHPRODUCTS_URL = `${API_BASE_URL}/documents/search?ref={apiRef}&q=${encodeURIComponent(
   '[[at(document.type, "product")]]'
-)}&q=${encodeURIComponent('[[fulltext(document, "{searchP}")]]')}&lang=en-us`;
+)}&q=${encodeURIComponent('[[fulltext(document, "searchP")]]')}&lang=en-us`;
+
 export function urlHandlingPagination(url, page, pageSize) {
   if (page !== undefined) {
     url = url + `&page=${page}&pageSize=${pageSize}`;
@@ -31,8 +36,7 @@ export function urlHandlingPagination(url, page, pageSize) {
 
 export function urlHandlingSearch(url, searchParam) {
   if (searchParam !== undefined) {
-    url.replace("searchP", searchParam);
+    url = url.replace("searchP", searchParam);
   }
-
   return url;
 }

@@ -23,7 +23,7 @@ export default function CategoryList({ start, itemsPerRow: lastItem }) {
         {seeMore &&
           data?.results
             .slice(lastItem)
-            .map((record) => <CategoryItem record={record} />)}
+            .map((record) => <CategoryItem key={record.id} record={record} />)}
       </div>
 
       <button

@@ -3,10 +3,10 @@ import Categories from "./../Categories/Categories.jsx";
 import FeaturedProducts from "./../FeaturedProducts/FeaturedProducts.jsx";
 import { useGetData } from "../../utils/hooks/useGetData";
 import Loader from "../Controls/Loader.jsx";
-import { API_FEATUREDBANNERS_URL } from "./../../utils/api-urls";
+import { API_FEATUREDPEODUCTS_URL } from "./../../utils/api-urls";
 
 function HomePage() {
-  const { data, isLoading } = useGetData(API_FEATUREDBANNERS_URL);
+  const { data, isLoading } = useGetData(API_FEATUREDPEODUCTS_URL);
 
   return (
     <>
