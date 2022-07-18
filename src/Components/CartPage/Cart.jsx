@@ -32,8 +32,10 @@ export default function Cart() {
           quantity={item.quantity}
         />
       ))}
-      <span className="btn-subtotal">Subtotal: ${subTotal}</span>
-      <Link to='/checkout' className="btn-buy">Buy</Link>
+      <span className="btn-subtotal">Total: ${subTotal}</span>
+      <Link to="/checkout" className="btn-buy">
+        Buy
+      </Link>
     </div>
   );
 }

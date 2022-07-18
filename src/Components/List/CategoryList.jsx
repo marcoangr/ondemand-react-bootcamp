@@ -1,26 +1,27 @@
 import React, { useState } from "react";
-import { useCategories } from "./../../utils/hooks/useCategories";
+import { useGetData } from "./../../utils/hooks/useGetData";
 import Loader from "../Controls/Loader";
 import CategoryItem from "./CategoryItem";
 import PropTypes from "prop-types";
+import { API_CATEGORIES_URL } from "../../utils/api-urls";
 
 export default function CategoryList({ start, itemsPerRow: lastItem }) {
-  const { dataCategories, isLoadingCategories } = useCategories();
+  const { data, isLoading } = useGetData(API_CATEGORIES_URL);
   const [seeMore, setSeeMore] = useState(false);
 
-  if (isLoadingCategories) {
+  if (isLoading) {
     return <Loader />;
   }
 
   return (
     <>
       <div className="row">
-        {dataCategories?.results.slice(start, lastItem).map((record) => (
+        {data?.results.slice(start, lastItem).map((record) => (
           <CategoryItem key={record.id} record={record} />
         ))}
 
         {seeMore &&
-          dataCategories?.results
+          data?.results
             .slice(lastItem)
             .map((record) => <CategoryItem record={record} />)}
       </div>

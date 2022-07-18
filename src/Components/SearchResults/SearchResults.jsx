@@ -1,21 +1,28 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useSearch } from "../../utils/hooks/useSearch";
+import { useGetData } from "../../utils/hooks/useGetData";
 import Loader from "../Controls/Loader";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 import PaginationControls from "../Controls/Pagination";
 import "./SearchResults.css";
+import {
+  API_SEARCHPRODUCTS_URL,
+  urlHandlingSearch,
+} from "../../utils/api-urls";
+
 const ITEMS_PER_PAGE = 20;
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const {
-    dataProducts: { results, total_pages },
-    isLoadingProducts,
-  } = useSearch(searchParams.get("q"), currentPage, ITEMS_PER_PAGE);
+    data: { results, total_pages },
+    isLoading,
+  } = useGetData(
+    urlHandlingSearch(API_SEARCHPRODUCTS_URL, searchParams.get("q"))
+  );
 
-  if (isLoadingProducts) {
+  if (isLoading) {
     return <Loader />;
   }
 

@@ -96,13 +96,12 @@ h4 {
 }
 
 .btn-buy {
-  position: sticky;
   bottom: 20px;
   left: 40%;
   width: 20%;
   margin: auto;
   padding: 10px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 10px;
 
   color: white;
@@ -111,10 +110,10 @@ h4 {
   cursor: pointer;
   margin-top: -1em;
   background-color: orange;
+  text-decoration: none;
 }
 
 .btn-subtotal {
-  position: sticky;
   bottom: 70px;
   left: 35%;
 
@@ -125,4 +124,75 @@ h4 {
   font-weight: 700;
   margin-bottom: 0;
   background-color: green;
+}
+
+@media screen and (max-width: 999px) {
+  .card-cart {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .card-cart {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .card-cart {
+    width: 85%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .card-cart {
+    width: 85%;
+    flex-direction: column;
+    height: auto;
+  }
+  .main-image {
+    margin: auto;
+  }
+
+  .main-image img {
+    border-radius: 50%;
+  }
+  .main-data {
+    width: 100%;
+  }
+  .btn-subtotal,
+  .btn-buy {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .card-cart {
+    width: 98%;
+  }
+  .main-data {
+    margin-top: 5px;
+    border-top: 1px dashed #ddd;
+    padding-top: 8px;
+  }
+  .title,
+  .btn-subtotal {
+    font-size: 14px;
+  }
+  .card-cart .quantity-input__modifier {
+    width: 20px;
+    height: 20px;
+  }
+
+  .card-cart .quantity-input__screen {
+    width: 20px;
+    height: 15px;
+    font-size: 12px;
+  }
+  .subtotal,
+  .stock {
+    font-size: 14px;
+  }
+  .subtotal {
+    line-height: 0.9;
+  }
 }

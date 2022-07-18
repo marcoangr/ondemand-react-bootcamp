@@ -35,8 +35,6 @@ const Quantity = ({
   return (
     <>
       <div className="quantity-control">
-        <label htmlFor="quantity">{"Quantity: "}</label>
-
         <button
           className="quantity-input__modifier quantity-input__modifier--left"
           onClick={decrement}
@@ -56,7 +54,7 @@ const Quantity = ({
           +
         </button>
       </div>
-      <h4>Subtotal: ${unitPrice * quantity}</h4>
+      <h4 className="subtotal">Subtotal: ${unitPrice * quantity}</h4>
       {maxValue > 0 && parent === "details" && (
         <Add2CartItem
           productId={productId}

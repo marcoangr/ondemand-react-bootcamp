@@ -19,7 +19,7 @@ export default function OrderSumary() {
           />
         ))}
       </div>
-      <span className="btn-subtotal no-sticky">Total: ${subTotal}</span>
+      <span className="btn-subtotal">Total: ${subTotal}</span>
     </>
   );
 }

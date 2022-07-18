@@ -53,9 +53,6 @@
 
 .btn-submit,
 .btn-cancel {
-  position: sticky;
-  bottom: 20px;
-  left: 40%;
   width: 20%;
   margin: auto;
   padding: 10px;
@@ -71,12 +68,11 @@
 
 .btn-submit {
   background-color: orange;
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .btn-cancel {
   background-color: skyblue;
-  margin-left: 20px;
 }
 
 .checkout-btn-container {
@@ -132,4 +128,131 @@ textarea:focus {
   position: unset;
   display: inline-block;
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 980px) {
+  .card-sumary {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .card-sumary {
+    width: 85%;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .customer-information {
+    width: 100%;
+  }
+  .card-sumary {
+    width: 95%;
+  }
+
+  .user-input {
+    width: 70%;
+    padding: 8px;
+  }
+
+  #userZip {
+    width: 40%;
+    margin-left: -30%;
+  }
+
+  .place-holder {
+    left: 15%;
+  }
+
+  .btn-subtotal {
+    width: 50%;
+  }
+
+  .card-sumary .main-image {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main-image {
+    margin: auto;
+  }
+
+  .card-sumary .main-image img {
+    border-radius: 50%;
+  }
+
+  .card-sumary .main-image {
+    height: 100%;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .card-sumary {
+    height: auto;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .subtotal,
+  .quantity {
+    margin: 0;
+    font-size: 14px;
+  }
+  .subtotal {
+    line-height: 0.9;
+  }
+
+  .form-container h1 {
+    font-size: 24px;
+  }
+  .form-container h1 ~ p {
+    font-size: 12px;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .customer-information {
+    margin: 0;
+  }
+
+  .user-input {
+    width: 100%;
+    margin: 5px auto 10px auto;
+  }
+
+  #userZip {
+    width: 60%;
+    margin-left: -40%;
+  }
+
+  #userNotes {
+    width: 100%;
+    height: 100px;
+  }
+
+  .place-holder {
+    left: 0;
+    font-size: 12px;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    font-size: 12px;
+  }
 }

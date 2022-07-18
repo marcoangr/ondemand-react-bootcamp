@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useProductDetails } from "../../utils/hooks/useProductDetails";
+import { useGetData } from "../../utils/hooks/useGetData";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
@@ -8,20 +8,26 @@ import "./ProductDetails.css";
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import Quantity from "../Controls/Quantity";
 import Loader from "../Controls/Loader";
+import {
+  API_PRODUCTDETAILS_URL,
+  urlHandlingSearch,
+} from "../../utils/api-urls";
 
 // install Swiper modules
 SwiperCore.use([Navigation, Thumbs]);
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const { productDetails, areLoadingDetails } = useProductDetails(productId);
+  const { data, isLoading } = useGetData(
+    urlHandlingSearch(API_PRODUCTDETAILS_URL, productId)
+  );
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  if (areLoadingDetails) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (productDetails[0] === undefined) {
+  if (data[0] === undefined) {
     return null;
   }
 
@@ -29,7 +35,7 @@ export default function ProductDetails() {
     id,
     tags,
     data: { images, name, sku, price, category, stock, description },
-  } = productDetails[0];
+  } = data[0];
   return (
     <>
       <div className="slider-thumbnail">
@@ -122,7 +128,7 @@ export default function ProductDetails() {
         <span className="label"> Specifications</span>
         <table className="specs">
           <tbody>
-            {productDetails[0]?.data?.specs?.map((spec) => (
+            {data[0].data.specs?.map((spec) => (
               <tr key={"sp-" + spec.spec_name}>
                 <td className="spec-name">{spec.spec_name}</td>
                 <td>{spec.spec_value}</td>

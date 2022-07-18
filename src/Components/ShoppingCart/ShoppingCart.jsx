@@ -11,7 +11,7 @@ export default function ShoppingCart() {
   return (
     <Link to="/cart" className="shopping-cart">
       <img src={cart} alt="shopping cart" />
-      <div className="badge">{itemsInCart}</div>
+      {itemsInCart > 0 && <div className="badge">{itemsInCart}</div>}
     </Link>
   );
 }

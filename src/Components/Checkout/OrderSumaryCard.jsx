@@ -1,20 +1,26 @@
-import { useProductDetails } from "../../utils/hooks/useProductDetails";
+import {
+  API_PRODUCTDETAILS_URL,
+  urlHandlingSearch,
+} from "../../utils/api-urls";
 import Loader from "../Controls/Loader";
 
 import PropTypes from "prop-types";
+import { useGetData } from "../../utils/hooks/useGetData";
 
 export default function OrderSumaryCard({ productId = "", quantity = 0 }) {
-  const { areLoadingDetails, productDetails } = useProductDetails(productId);
+  const { data, isLoading } = useGetData(
+    urlHandlingSearch(API_PRODUCTDETAILS_URL, productId)
+  );
 
-  if (areLoadingDetails) {
+  if (isLoading) {
     return <Loader />;
   }
-  if (productDetails[0] === undefined) {
+  if (data[0] === undefined) {
     return null;
   }
   const {
     data: { mainimage, name, price },
-  } = productDetails[0];
+  } = data[0];
   return (
     <div className="card-sumary">
       <div className="main-image">
@@ -24,9 +30,9 @@ export default function OrderSumaryCard({ productId = "", quantity = 0 }) {
         <div className="col-1">
           <h4 className="title">{name}</h4>
 
-          <span>{"Products(" + quantity + ")"}</span>
+          <span className="quantity">{"Product x " + quantity}</span>
           <hr />
-          <span>
+          <span className="subtotal">
             {"SubTotal: $" + Number.parseFloat(quantity * price).toFixed(2)}
           </span>
         </div>

@@ -1,22 +1,28 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
-import { useProductDetails } from "../../utils/hooks/useProductDetails";
+import { useGetData } from "../../utils/hooks/useGetData";
 import Loader from "../Controls/Loader";
 import Quantity from "../Controls/Quantity";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
+import {
+  API_PRODUCTDETAILS_URL,
+  urlHandlingSearch,
+} from "../../utils/api-urls";
 
 export default function Cartcard({ productId = "", quantity = 0 }) {
-  const { areLoadingDetails, productDetails } = useProductDetails(productId);
+  const { data, isLoading } = useGetData(
+    urlHandlingSearch(API_PRODUCTDETAILS_URL, productId)
+  );
   const { removeFromCart } = useContext(ShoppingCartContext);
 
-  if (productDetails[0] === undefined) {
+  if (data[0] === undefined) {
     return null;
   }
   const {
     data: { name, sku, price, stock, mainimage },
-  } = productDetails[0];
+  } = data[0];
 
-  if (areLoadingDetails) {
+  if (isLoading) {
     return <Loader />;
   }
 
@@ -40,7 +46,7 @@ export default function Cartcard({ productId = "", quantity = 0 }) {
             parent="cart"
             unitPrice={price}
           />
-          <p style={{ color: "gray", marginTop: "0px" }}>
+          <p className="stock" style={{ color: "gray", marginTop: "0px" }}>
             Stock available: {stock}
           </p>
 
